@@ -48,4 +48,6 @@ RUN npm install
 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 
+EXPOSE 3000
+
 CMD ["npm", "start"]
