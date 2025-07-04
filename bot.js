@@ -43,9 +43,25 @@ async function processMessage(client, message, isSimulatedSelf = false) {
 // --- Venom-bot Initialization ---
 venom
   .create({
-    session: 'ai-agent-session', // session name for the venom instance
+    session: 'ai-agent-session',
     headless: true,
+    puppeteerOptions: {
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-accelerated-2d-canvas',
+        '--no-first-run',
+        '--no-zygote',
+        '--single-process',
+        '--disable-gpu'
+      ]
+    },
+    // Optional but recommended: Use a fixed path if you plan to mount a Render Disk
+    sessionPath: '/session'
   })
+
+
   .then((venomClient) => {
     client = venomClient;
     console.log("Venom-bot client initialized.");
